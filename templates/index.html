@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Gateway Status</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            background: url('{{ url_for('static', filename='images/background.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            color: white;  /* Optional: makes text readable over dark backgrounds */
+            font-family: 'Arial', sans-serif;
+            margin: 0;  
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: backgroundAnimation 10s infinite alternate; /* Animation for background */
+            position: relative;
+        }
+
+        
+        /* Container Styles */
+        .container {
+            max-width: 90%;
+            width: 500px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out; /* Animation for container */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo Styles */
+        .brand-logo {
+            width: 100px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.1); /* Logo hover effect */
+        }
+
+        /* Title Color */
+        .brand-color {
+            color: #2e8b57; /* Deep green color */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styles */
+        .btn-brand {
+            background-color: #2e8b57;
+            color: #fff;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+
+        .btn-brand:hover {
+            background-color: #247344; /* Darker green */
+        }
+
+        /* Vehicle Icon */
+        .vehicle-icon {
+            width: 200px; /* Larger icon */
+            margin-top: 20px;
+            animation: scaleUp 1.5s ease-in-out infinite alternate; /* Animation for icon */
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2); /* Vehicle icon scales */
+            }
+        }
+
+        /* Form Styles */
+        .form-label {
+            font-size: 1.1rem;
+        }
+
+        .form-control {
+            padding: 12px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+                padding: 20px;
+            }
+
+            .brand-color {
+                font-size: 2rem;
+            }
+
+            .vehicle-icon {
+                width: 150px; /* Slightly smaller icon on mobile */
+            }
+
+            .btn-brand {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+            }
+
+            .brand-color {
+                font-size: 1.8rem;
+            }
+
+            .vehicle-icon {
+                width: 130px; /* Even smaller icon on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Logo -->
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Brand Logo" class="brand-logo mb-4">
+
+        <!-- Title -->
+        <h1 class="brand-color">Check Vehicle Gateway</h1>
+
+        <!-- Form -->
+        <form method="POST" class="mt-4">
+            <div class="mb-3">
+                <label for="plate_number" class="form-label">Enter Vehicle Plate Number:</label>
+                <input type="text" id="plate_number" name="plate_number" class="form-control" placeholder="e.g., TN01AX1234" required>
+            </div>
+            <button type="submit" class="btn btn-brand w-100">Check</button>
+        </form>
+
+        <!-- Message -->
+        {% if message %}
+        <p class="mt-3 text-success fw-bold">{{ message }}</p>
+        {% endif %}
+
+        <!-- Vehicle Icon -->
+        <img src="{{ url_for('static', filename='images/vehicle-icon.png') }}" alt="Vehicle Icon" class="vehicle-icon">
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+opencv-python-headless
+opencv-contrib-python
+cvzone
+ultralytics
+pandas
+numpy
+paddleocr
+#tensorflow
+#paddlepaddle
+pymsql
